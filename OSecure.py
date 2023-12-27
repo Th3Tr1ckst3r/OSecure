@@ -83,14 +83,15 @@ from tkinter import *
 class OSecure:
     def __init__(self, root):
         self.root = root
-        self.root.iconphoto(False, PhotoImage(file=os.path.abspath(os.path.join(os.path.dirname(__file__), "logo.png"))))
-        self.root.title("OSecure V1.0")
-        self.root.tk_setPalette(background='#2e2e2e', foreground='#ffffff')
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
         x_position = (screen_width - 400) // 2
         y_position = (screen_height - 300) // 2
+        self.root.iconphoto(False, PhotoImage(file=os.path.abspath(os.path.join(os.path.dirname(__file__), "logo.png"))))
+        self.root.title("OSecure V1.0")
+        self.root.tk_setPalette(background='#2e2e2e', foreground='#ffffff')
         self.root.geometry(f"400x330+{x_position}+{y_position}")
+        self.root.resizable(False, False)
         self.use_compression_var = IntVar()
         self.use_compression_checkbox = Checkbutton(root, text="Use Compression", variable=self.use_compression_var, command=self.update_checkbox_text)
         self.use_compression_checkbox.pack(pady=5)
@@ -118,7 +119,6 @@ class OSecure:
         self.decrypt_button.pack(side="left", padx=5)
         self.about_button = Button(root, text="About OSecure", command=self.show_about_dialog)
         self.about_button.pack(pady=10)
-        self.root.resizable(False, False)
         
     def update_checkbox_text(self):
         if self.use_compression_var.get():
