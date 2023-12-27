@@ -74,24 +74,16 @@ https://raw.githubusercontent.com/Th3Tr1ckst3r/OSecure/main/LICENSE
 """
 import os
 import brotli
-import requests
-import tkinter as tk
-from tkinter import filedialog, messagebox
-from PIL import Image, ImageTk
-from io import BytesIO
 from Crypto.Cipher import ChaCha20_Poly1305
 from Crypto.Random import get_random_bytes
+from tkinter import messagebox, filedialog
+from tkinter import *
 
 
 class OSecure:
     def __init__(self, root):
         self.root = root
-        icon_data = self.get_logo("https://i.imgur.com/wcBAggh.png")
-        if icon_data:
-            icon_image = Image.open(BytesIO(icon_data))
-            icon_image = icon_image.resize((32, 32), Image.ANTIALIAS)
-            self.icon_photo = ImageTk.PhotoImage(icon_image)
-            self.root.iconphoto(False, self.icon_photo)
+        self.root.iconphoto(False, PhotoImage(file='logo.png'))
         self.root.title("OSecure V1.0")
         self.root.tk_setPalette(background='#2e2e2e', foreground='#ffffff')
         screen_width = root.winfo_screenwidth()
@@ -99,42 +91,33 @@ class OSecure:
         x_position = (screen_width - 400) // 2
         y_position = (screen_height - 300) // 2
         self.root.geometry(f"400x330+{x_position}+{y_position}")
-        self.use_compression_var = tk.IntVar()
-        self.use_compression_checkbox = tk.Checkbutton(root, text="Use Compression", variable=self.use_compression_var, command=self.update_checkbox_text)
+        self.use_compression_var = IntVar()
+        self.use_compression_checkbox = Checkbutton(root, text="Use Compression", variable=self.use_compression_var, command=self.update_checkbox_text)
         self.use_compression_checkbox.pack(pady=5)
-        self.checkbox_text_var = tk.StringVar()
-        self.checkbox_text_label = tk.Label(root, textvariable=self.checkbox_text_var, fg='#ffffff', bg='#2e2e2e')
+        self.checkbox_text_var = StringVar()
+        self.checkbox_text_label = Label(root, textvariable=self.checkbox_text_var, fg='#ffffff', bg='#2e2e2e')
         self.checkbox_text_label.pack(pady=5)
         self.update_checkbox_text()
-        self.filepath_label = tk.Label(root, text="Select a File, or Folder:")
+        self.filepath_label = Label(root, text="Select a File, or Folder:")
         self.filepath_label.pack(pady=5)
-        self.filepath_var = tk.StringVar()
-        self.filepath_entry = tk.Entry(root, textvariable=self.filepath_var, state="disabled", width=40)
+        self.filepath_var = StringVar()
+        self.filepath_entry = Entry(root, textvariable=self.filepath_var, state="disabled", width=40)
         self.filepath_entry.pack(pady=5)
-        self.browse_button = tk.Button(root, text="Browse", command=self.browse_file)
+        self.browse_button = Button(root, text="Browse", command=self.browse_file)
         self.browse_button.pack(pady=5)
-        self.password_label = tk.Label(root, text="Enter A Password:")
+        self.password_label = Label(root, text="Enter A Password:")
         self.password_label.pack(pady=5)
-        self.password_var = tk.StringVar()
-        self.password_entry = tk.Entry(root, textvariable=self.password_var, show="*")
+        self.password_var = StringVar() 
+        self.password_entry = Entry(root, textvariable=self.password_var, show="*")
         self.password_entry.pack(pady=5)
-        button_frame = tk.Frame(root)
+        button_frame = Frame(root)
         button_frame.pack(pady=5)
-        self.encrypt_button = tk.Button(button_frame, text="Encrypt", command=self.encrypt_file)
+        self.encrypt_button = Button(button_frame, text="Encrypt", command=self.encrypt_file)
         self.encrypt_button.pack(side="left", padx=5)
-        self.decrypt_button = tk.Button(button_frame, text="Decrypt", command=self.decrypt_file)
+        self.decrypt_button = Button(button_frame, text="Decrypt", command=self.decrypt_file)
         self.decrypt_button.pack(side="left", padx=5)
-        self.about_button = tk.Button(root, text="About OSecure", command=self.show_about_dialog)
+        self.about_button = Button(root, text="About OSecure", command=self.show_about_dialog)
         self.about_button.pack(pady=10)
-        
-    def get_logo(self, url):
-        try:
-            response = requests.get(url)
-            response.raise_for_status()
-            return response.content
-        except requests.exceptions.RequestException as e:
-            print(f"Error downloading image: {e}")
-            return None
 
     def update_checkbox_text(self):
         if self.use_compression_var.get():
@@ -143,7 +126,7 @@ class OSecure:
             self.checkbox_text_var.set("Brotli compression is Disabled.")
 
     def browse_file(self):
-        self.root.tk_setPalette(background='#2e2e2e', foreground='#ffffff')  # Set dark theme for file dialog
+        self.root.tk_setPalette(background='#2e2e2e', foreground='#ffffff')
         selected_path = filedialog.askopenfilename(filetypes=[("All Files", "*.*")])
         if selected_path:
             self.filepath_var.set(selected_path)
@@ -262,7 +245,6 @@ class OSecure:
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
+    root = Tk()
     app = OSecure(root)
     root.mainloop()
-
