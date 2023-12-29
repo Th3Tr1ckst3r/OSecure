@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/wcBAggh.png" alt="OSecure Logo" width="300">
 </p>
 
-# GReverse
+# OSecure
 
 [![License](https://img.shields.io/badge/License-GPL%203.0%20with%20AGPL%203.0-blue.svg)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Th3Tr1ckst3r/OSecure)](https://github.com/Th3Tr1ckst3r/OSecure/stargazers)
