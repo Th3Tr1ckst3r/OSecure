@@ -32,11 +32,11 @@ and automatically saving you the headache of having to learn the complex nature 
 - XChaCha20 secure encryption algorithm(Faster than AES-256).
 - Google's Brotli file compression algorithm(For saving superior file space).
 
-## Screenshot
+## OSecure UI
 
-![OSecure_GUI](url_here)
+![OSecure_GUI](https://i.imgur.com/EuKONSB.png)
 
-## Demo
+## OSecure Demo
 
 ![OSecure_Demo](url_here)
 
