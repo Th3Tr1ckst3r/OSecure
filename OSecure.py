@@ -93,12 +93,12 @@ class OSecure:
         self.root.geometry(f"400x330+{x_position}+{y_position}")
         self.root.resizable(False, False)
         self.use_compression_var = IntVar()
-        self.use_compression_checkbox = Checkbutton(root, text="Use Compression", variable=self.use_compression_var, command=self.update_checkbox_text)
+        self.use_compression_checkbox = Checkbutton(root, text="Use Compression", variable=self.use_compression_var, command=self.update_compression_text)
         self.use_compression_checkbox.pack(pady=5)
         self.checkbox_text_var = StringVar()
         self.checkbox_text_label = Label(root, textvariable=self.checkbox_text_var, fg='#ffffff', bg='#2e2e2e')
         self.checkbox_text_label.pack(pady=5)
-        self.update_checkbox_text()
+        self.update_compression_text()
         self.filepath_label = Label(root, text="Select a File, or Folder:")
         self.filepath_label.pack(pady=5)
         self.filepath_var = StringVar()
@@ -120,7 +120,7 @@ class OSecure:
         self.about_button = Button(root, text="About OSecure", command=self.show_about_dialog)
         self.about_button.pack(pady=10)
         
-    def update_checkbox_text(self):
+    def update_compression_text(self):
         if self.use_compression_var.get():
             self.checkbox_text_var.set("Brotli compression is Enabled.")
         else:
